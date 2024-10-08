@@ -14,22 +14,22 @@ namespace Pam_Study.Services
     {
         private HttpClient _httpClient;
         private Models.Monitor monitor;
-        private List<Models.Monitor> monitors;
-        private JsonSerializerOptions _serializerOptions;
+        private ObservableCollection<Models.Monitor> monitors;
+        private JsonSerializerOptions serializerOptions;
 
         public MonitorService()
         {
             _httpClient = new HttpClient();
-            _serializerOptions = new JsonSerializerOptions
+            serializerOptions = new JsonSerializerOptions
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
                 WriteIndented = true
             };
         }
-        public async Task<ObservableCollection<Models.Monitor>> getPostAsync()
+        public async Task<ObservableCollection<Models.Monitor>> getAllMonitorsAsync()
         {
 
-            Uri uri = new Uri("https://jsonplaceholder.typicode.com/posts");
+            Uri uri = new Uri("http://localhost:8080/");
             try
             {
                 HttpResponseMessage response = await _httpClient.GetAsync(uri);
